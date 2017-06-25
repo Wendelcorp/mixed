@@ -1,13 +1,51 @@
+<h1>New Mix</h1>
 <%= render 'form' %>
 <br>
 <div class="container">
   <div class="">
     <% @posts.each do |post| %>
-    <div class="">
-      <div>
+    <div >
         <%= post.artist %> <%= post.song %>
-      </div>
     </div>
+    <div class="play song" data-video-id="<%= post.songid %>">Play</div>
+    <div class="pause">Pause</div>
+    <br>
     <% end %>
   </div>
+  <div id="video-placeholder"></div>
 </div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+var player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('video-placeholder', {
+        width: 320,
+        height: 200,
+        videoId: '',
+        playerVars: {
+            color: 'white',
+            playlist: ''
+        },
+        events: {
+            onReady: initialize
+        }
+    });
+}
+function initialize(){
+}
+
+$('.play').on('click', function () {
+    player.playVideo();
+});
+$('.pause').on('click', function () {
+    player.pauseVideo();
+});
+$('.song').on('click', function () {
+    console.log(player)
+    var url = $(this).attr('data-video-id');
+    player.cueVideoById(url);
+    $('#video-placeholder').css('display', 'block')
+    player.playVideo();
+});
+</script>

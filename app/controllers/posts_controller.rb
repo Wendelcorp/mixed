@@ -57,7 +57,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:artist, :song)
+    params.require(:post).permit(:artist, :song, :songid)
   end
 
   def find_post
