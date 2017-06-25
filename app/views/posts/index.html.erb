@@ -1,0 +1,13 @@
+<%= render 'form' %>
+<br>
+<div class="container">
+  <div class="">
+    <% @posts.each do |post| %>
+    <div class="">
+      <div>
+        <%= post.artist %> <%= post.song %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
