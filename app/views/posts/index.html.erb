@@ -7,7 +7,8 @@
     <div >
         <%= post.artist %> <%= post.song %>
     </div>
-    <div class="play song" data-video-id="<%= post.songid %>">Play</div>
+    <div class="song" data-video-id="<%= post.songid %>">Launch</div>
+    <div class="play">Play</div>
     <div class="pause">Pause</div>
     <br>
     <% end %>
@@ -42,7 +43,6 @@ $('.pause').on('click', function () {
     player.pauseVideo();
 });
 $('.song').on('click', function () {
-    console.log(player)
     var url = $(this).attr('data-video-id');
     player.cueVideoById(url);
     $('#video-placeholder').css('display', 'block')
